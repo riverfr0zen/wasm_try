@@ -1,10 +1,10 @@
 # WASMs I create crash Chrome unless devtools are open
 
-I'm new to Rust & Bevy, and this is the first time I'm trying to target wasm. Unfortunately, I've across a strange situation:
+I'm new to Rust & Bevy, and this is the first time I'm trying to target wasm. Unfortunately, I've come across a strange situation:
 
-The issue is that when I try to access the wasms I create in Chrome (98.0.4758.80 on Ubuntu 21.10), unless I have the developer tools open (by clicking Inspect), the browser tab crashes  (or sometimes Chrome itself just flat out crashes). If I have the dev tools open, everything works fine. 
+When I try to access the wasms I've created in Chrome (98.0.4758.80 on Ubuntu 21.10), unless I have the developer tools open (by clicking Inspect), the browser tab crashes  (or sometimes Chrome itself just flat out crashes). If I have the dev tools open, everything works fine. 
 
-How I am trying to build the wasm assets:
+How I am building the wasm assets:
 
 ```
 cargo build --example rect_eg --target wasm32-unknown-unknown
@@ -13,48 +13,46 @@ wasm-bindgen --out-dir examples/wasm/target --target web target/wasm32-unknown-u
 
 ```
 
+You can see my failing set up here: https://github.com/riverfr0zen/wasm_try
+
 The code is simply the rectangle example from here: https://bevyengine.org/examples/
 
 Note that I can run all the examples at the link above in Chrome without a problem. The issue is happening only with wasms that I create on my machine.
 
 
-The following is the output from Chrome when it crashes:
+The following is the output from Chrome when it crashes: 
 
 ```
-irf@unicron:~/htdocs/wasm_try$ chrome
-[44298:44326:0204/171246.483872:ERROR:chrome_browser_main_extra_parts_metrics.cc(227)] START: ReportBluetoothAvailability(). If you don't see the END: message, this is crbug.com/1216328.
-[44298:44326:0204/171246.483889:ERROR:chrome_browser_main_extra_parts_metrics.cc(230)] END: ReportBluetoothAvailability()
-[0204/171306.778301:ERROR:directory_reader_posix.cc(42)] opendir /home/irf/.config/google-chrome/Crash Reports/attachments/7b1af2df-7313-4960-a99a-fe42853b30ab: No such file or directory (2)
-[0204/171306.968001:ERROR:ptracer.cc(422)] ptrace: No such process (3)
-[0204/171306.968014:ERROR:ptracer.cc(446)] Unexpected registers size 0 != 216
-[0204/171306.968017:WARNING:process_reader_linux.cc(379)] Couldn't initialize main thread.
-[0204/171307.138819:ERROR:scoped_ptrace_attach.cc(37)] process not stopped
-[0204/171307.138845:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138855:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138860:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138864:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138868:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138873:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138877:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138881:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138886:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138890:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138894:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138899:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138903:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138907:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138912:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138916:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.138920:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.367401:ERROR:scoped_ptrace_attach.cc(37)] process not stopped
-[0204/171307.367423:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.367432:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.367435:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.367438:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
-[0204/171307.367457:ERROR:file_io_posix.cc(144)] open /proc/44480/auxv: Permission denied (13)
-[0204/171307.367479:ERROR:process_memory.cc(41)] short read
-[0204/171307.367482:ERROR:process_snapshot_linux.cc(78)] Couldn't read exception info
-[0204/171307.368028:ERROR:scoped_ptrace_attach.cc(45)] ptrace: No such process (3)
+[0204/174803.628690:ERROR:ptracer.cc(422)] ptrace: No such process (3)
+[0204/174803.628712:ERROR:ptracer.cc(446)] Unexpected registers size 0 != 216
+[0204/174803.628715:WARNING:process_reader_linux.cc(379)] Couldn't initialize main thread.
+[0204/174803.675713:ERROR:scoped_ptrace_attach.cc(37)] process not stopped
+[0204/174803.890453:ERROR:scoped_ptrace_attach.cc(37)] process not stopped
+[0204/174803.890482:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890492:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890500:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890507:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890514:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890522:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890529:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890536:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890543:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890550:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890558:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890566:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890572:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890578:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890584:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890590:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890596:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890602:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890619:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890625:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890631:ERROR:scoped_ptrace_attach.cc(27)] ptrace: No such process (3)
+[0204/174803.890661:ERROR:file_io_posix.cc(144)] open /proc/54187/auxv: Permission denied (13)
+[0204/174803.890674:ERROR:process_memory.cc(41)] short read
+[0204/174803.890699:ERROR:process_snapshot_linux.cc(78)] Couldn't read exception info
+[0204/174803.891235:ERROR:scoped_ptrace_attach.cc(45)] ptrace: No such process (3)
 ```
 
 If I have the developer tools open, everything works as expected. I do get the error below in the console log, but I believe it is expected.
