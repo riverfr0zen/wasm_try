@@ -1,3 +1,7 @@
+# Issue resolved
+
+The <a href="https://github.com/bevyengine/bevy/issues/3867">issue</a> this repo was created to illustrate has since been resolved. Leaving this here for historical reasons.
+
 # WASMs I create crash Chrome unless devtools are open
 
 I'm new to Rust & Bevy, and this is the first time I'm trying to target wasm. Unfortunately, I've come across a strange situation:
